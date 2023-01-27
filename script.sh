@@ -86,4 +86,4 @@ chown www-data:www-data /etc/zabbix/web/zabbix.conf.php
     service mariadb restart
     service zabbix-server restart
     service zabbix-agent restart
-    systemctl enable zabbix-server zabbix-agent apach
+    systemctl enable zabbix-server zabbix-agent apache
