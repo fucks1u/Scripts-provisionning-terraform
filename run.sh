@@ -1,9 +1,9 @@
    # A exécuter sur zab
 echo "*************** ce provision execute sur zab***********************************"
     set -ex
-    apt-get update
-    apt-get -y install apache2 php php-mysql php-mysqlnd php-ldap php-bcmath php-mbstring php-gd php-pdo php-xml libapache2-mod-php
-    apt-get -y install mariadb-server mariadb-client curl
+    sudo apt-get update
+    sudo apt-get -y install apache2 php php-mysql php-mysqlnd php-ldap php-bcmath php-mbstring php-gd php-pdo php-xml libapache2-mod-php
+    sudo apt-get -y install mariadb-server mariadb-client curl
 
 echo "***************************************Zabbix***************************************************"
    wget https://repo.zabbix.com/zabbix/6.2/debian/pool/main/z/zabbix-release/zabbix-release_6.2-4%2Bdebian11_all.deb
