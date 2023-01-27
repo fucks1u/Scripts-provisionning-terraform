@@ -24,11 +24,11 @@ echo "***************************************Zabbix*****************************
 
 echo "************************* Ajouter une base de donneés Zabbix à l utilisatuer zabbix (Mariadb) ********************************"
   mysql -u root -ppassword <<SQL_QUERY
-  CREATE DATABASE zabbix CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
-  CREATE USER 'zabbix'@'localhost' IDENTIFIED BY 'password';
-  GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'localhost';
-  SET GLOBAL log_bin_trust_function_creators = 1;
-  SQL_QUERY
+CREATE DATABASE zabbix CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+CREATE USER 'zabbix'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'localhost';
+SET GLOBAL log_bin_trust_function_creators = 1;
+SQL_QUERY
 
 zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -uzabbix -ppassword zabbix
 
