@@ -2,13 +2,13 @@
 
 bleu="\e[1;34m"
 
-        echo "${bleu}************************************** \\ Installation des paquets Zabbix // ********************************************************"
+        echo -e "${bleu}************************************** \\ Installation des paquets Zabbix // ********************************************************"
 
 sudo apt-get update
 sudo apt-get -y install apache2 php php-mysql php-mysqlnd php-ldap php-bcmath php-mbstring php-gd php-pdo php-xml libapache2-mod-php wget
 sudo apt-get -y install mariadb-server mariadb-client curl
 
-        echo "${bleu}************************************** \\ Installation et configuration de Zabbix // *************************************************"
+        echo -e "${bleu}************************************** \\ Installation et configuration de Zabbix // *************************************************"
 
 wget https://repo.zabbix.com/zabbix/6.2/debian/pool/main/z/zabbix-release/zabbix-release_6.2-4%2Bdebian11_all.deb
 sudo dpkg -i zabbix-release_6.2-4+debian11_all.deb
@@ -25,7 +25,7 @@ sudo sed -i 's/# DBPassword=/DBPassword=password/' /etc/zabbix/zabbix_server.con
 sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/cli/php.ini
 sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/apache2/php.ini
 
-        echo "${bleu}************************* \\ Ajouter une base de donneés Zabbix à l'utilisateur zabbix (Mariadb) // *********************************"
+        echo -e "${bleu}**************************** \\ Ajouter une base de donneés Zabbix à l'utilisateur zabbix (Mariadb) // **********************************"
 
 sudo mysql -u root -ppassword <<SQL_QUERY
 CREATE DATABASE zabbix CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
@@ -33,18 +33,16 @@ CREATE USER 'zabbix'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'localhost';
 SET GLOBAL log_bin_trust_function_creators = 1;
 SQL_QUERY
-
-        echo "${bleu}************************************* \\ Telechargement des dependances de Zabbix // *************************************************"
-
+ 
 sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql --default-character-set=utf8mb4 -uzabbix -ppassword zabbix
 
-        echo "${bleu}*********************************************** \\ Configuration Mariadb-2 // *********************************************************"
+        echo -e "${bleu}************************************************ \\ Configuration Mariadb-2 // *********************************************************"
 
 sudo mysql -u root -ppassword <<SQL_QUERY
 SET GLOBAL log_bin_trust_function_creators = 0;
 SQL_QUERY
 
-        echo "${bleu}*************************************************** \\ Configuration-Gui-zabbix // *****************************************************"
+        echo -e "${bleu}*************************************************** \\ Configuration-Gui-zabbix // *****************************************************"
 
 sudo touch /etc/zabbix/web/zabbix.conf.php
 sudo chmod 777 /etc/zabbix/web/zabbix.conf.php
@@ -90,7 +88,7 @@ EOF
 sudo chmod 600 /etc/zabbix/web/zabbix.conf.php
 sudo chown www-data:www-data /etc/zabbix/web/zabbix.conf.php
 
-        echo "${bleu}*********************************************** \\ Redemarre tout les services // ******************************************************"
+        echo -e "${bleu}*********************************************** \\ Redemarre tout les services // ******************************************************"
 sudo service apache2 restart
 sudo service mariadb restart
 sudo service zabbix-server restart
