@@ -1,7 +1,7 @@
 #!/bin/bash
 
-bleu="\033[34m"
-   # A exécuter sur zab
+bleu="\e[1;34m"
+
         echo "${bleu}************************************** \\ Installation des paquets Zabbix // ********************************************************"
 
 sudo apt-get update
@@ -25,7 +25,7 @@ sudo sed -i 's/# DBPassword=/DBPassword=password/' /etc/zabbix/zabbix_server.con
 sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/cli/php.ini
 sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/apache2/php.ini
 
-        echo "${bleu}************************* \\ Ajouter une base de donneés Zabbix à l'utilisatuer zabbix (Mariadb) // *********************************"
+        echo "${bleu}************************* \\ Ajouter une base de donneés Zabbix à l'utilisateur zabbix (Mariadb) // *********************************"
 
 sudo mysql -u root -ppassword <<SQL_QUERY
 CREATE DATABASE zabbix CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
