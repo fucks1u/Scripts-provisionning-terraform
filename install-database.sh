@@ -19,8 +19,8 @@ passwp="passwp"
 passmdb="passmdb"
 passzabbix="passzabbix"
 
-ipzab=""
-ipwp=""
+ipzab="34.107.0.74"
+ipwp="35.198.102.242"
 
 set -ex
 sudo apt-get update
