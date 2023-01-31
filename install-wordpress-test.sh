@@ -22,7 +22,7 @@ set -e
     echo -e "${bleu}******************************* 1. Installation du service Apache2 ******************************************"
    
 sudo apt-get update
-sudo apt-get -y instal apache2 locales-all wget
+sudo apt-get -y install apache2 locales-all wget
 sudo systemctl start apache2
 
     echo -e "${bleu}*************************** 2. Activé le service Apache2 au redémarrage du système **************************"
