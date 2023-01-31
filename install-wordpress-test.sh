@@ -17,7 +17,7 @@ abort()
 
 trap 'abort' 0
 
-
+set -e
     # A exécuter sur wordpress
     echo -e "${bleu}******************************* 1. Installation du service Apache2 ******************************************"
    
