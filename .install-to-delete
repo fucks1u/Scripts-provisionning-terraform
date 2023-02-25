@@ -1,5 +1,4 @@
 #!/bin/bash
-
 bleu="\e[1;34m"
 
     # A exécuter sur wordpress
