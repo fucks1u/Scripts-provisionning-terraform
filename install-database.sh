@@ -51,7 +51,7 @@ sed -i 's/^bind-address.*/bind-address = */' /etc/mysql/mariadb.conf.d/50-server
 
     echo "Telechargement des donnees necessaires a Zabbix"
 
-#zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -uzabbix -p$p>
+#zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -h$ipdb -uzabbix -p$p>
 sudo mysql -uroot -e "SET GLOBAL log_bin_trust_function_creators = 0;"
 
     echo "******************** 3. Securiser la base de donnée MariaDB  *********************"
