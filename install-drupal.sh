@@ -110,7 +110,7 @@ y
 EOF
 
 
-    echo -e "${bleu}******************** 14.  Création d'une base de donnee et de son utilisateur pour Wordpress *****************"
+    echo -e "${bleu}******************** 14.  Création d'une base de donnee et de son utilisateur pour drupal *****************"
 
 sudo mysql -u root -ppassword <<SQL_QUERY
 CREATE DATABASE dldata CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
@@ -135,16 +135,16 @@ echo -e "${bleu}************************** 18. Deplacer tout les fichiers Drupal
 sudo mv drupal/ /var/www/html
 
 
-echo -e "${bleu}********************************* 19. attributs de propriété des fichiers *******************************************"
+echo -e "${bleu}********************************* 19. attributs de propriété aux fichiers drupal *******************************************"
 sudo chown -R www-data:www-data /var/www/html/drupal
 
-echo -e "${bleu}******************************* 20. Supprimer les fichier par defaut ************************************************"
+echo -e "${bleu}******************************* 20. Supprimer les fichiers par defauts *****************************************************"
 sudo rm -rf /var/www/html/index.html
 
 
 
     
-    echo -e "${bleu}***************************** 16. Recharger les services ********************************************************"
+    echo -e "${bleu}***************************** 16. Recharger les fichiers de conf ~services~**********************************************"
 sudo service php7.4-fpm restart
 sudo service apache2 restart
 sudo service mariadb restart
