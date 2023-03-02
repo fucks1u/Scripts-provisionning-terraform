@@ -16,6 +16,7 @@ trap 'abort' 0
 
 #Mot de passe :
 passwp="passwp"
+passdl="passdl"
 passmdb="passmdb"
 passzabbix="passzabbix"
 
