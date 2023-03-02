@@ -36,6 +36,13 @@ sudo mysql -uroot -e "CREATE USER wpuser@'${ipwp}' IDENTIFIED BY '${passwp}';"
 sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON wpdata.* TO 'wpuser'@'${ipwp}';"
 sudo mysql -uroot -e "FLUSH PRIVILEGES;"
 
+   echo "Creation de la base de donnee Drupal et son utilisateur"
+
+sudo mysql -uroot -e "CREATE DATABASE dldata CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;"
+sudo mysql -uroot -e "CREATE USER dluser@'${ipdl}' IDENTIFIED BY '${passdl}';"
+sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON dldata.* TO 'dluser'@'${ipdl}';"
+sudo mysql -uroot -e "FLUSH PRIVILEGES;"
+
     echo "Creation de la base de donnee Zabbix et son utilisateur"
 
 sudo mysql -uroot -e "CREATE DATABASE zabbix DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;"
@@ -55,12 +62,6 @@ sed -i 's/^bind-address.*/bind-address = */' /etc/mysql/mariadb.conf.d/50-server
 sudo mysql -uroot -e "SET GLOBAL log_bin_trust_function_creators = 0;"
 
 
-   echo "Creation de la base de donnee Drupal et son utilisateur"
-
-sudo mysql -uroot -e "CREATE DATABASE dldata CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;"
-sudo mysql -uroot -e "CREATE USER dluser@'${ipdl}' IDENTIFIED BY '${passdl}';"
-sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON dldata.* TO 'dluser'@'${ipdl}';"
-sudo mysql -uroot -e "FLUSH PRIVILEGES;"
 
     echo "******************** 3. Securiser la base de donnée MariaDB  *********************"
 
