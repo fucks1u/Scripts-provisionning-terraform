@@ -14,8 +14,8 @@ sudo apt-get -y install mariadb-server mariadb-client curl
 
         echo -e "${bleu}************************************** \\ Installation et configuration de Zabbix // *************************************************"
 
-wget https://repo.zabbix.com/zabbix/6.2/debian/pool/main/z/zabbix-release/zabbix-release_6.2-4%2Bdebian11_all.deb
-sudo dpkg -i zabbix-release_6.2-4%2Bdebian11_all.deb
+wget https://repo.zabbix.com/zabbix/6.2/debian/pool/main/z/zabbix-release/zabbix-release_6.2-4%2Bdebian11_all.deb -O zabbix-release6-2.deb
+sudo dpkg -i zabbix-release6-2.deb
 
 sudo apt-get -y install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent
 sudo apt-get -y install locales-all
@@ -39,7 +39,7 @@ sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/apache2/php.ini
 #SET GLOBAL log_bin_trust_function_creators = 1;
 #SQL_QUERY
  
-sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql --default-character-set=utf8mb4 -h '${bdd}' -uzabbix -p'$passzabbix' zabbix
+sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql --default-character-set=utf8mb4 -h '${bdd}' -uzabbix -p'${passzabbix}' zabbix
 
 #        echo -e "${bleu}************************************************ \\ Configuration Mariadb-2 // *********************************************************"
 
