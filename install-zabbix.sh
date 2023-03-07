@@ -51,106 +51,7 @@ sudo touch /etc/zabbix/web/zabbix.conf.php
 sudo chmod 777 /etc/zabbix/web/zabbix.conf.php
 sudo cat <<"EOF" > /etc/zabbix/web/zabbix.conf.php
 <?php
-$ZBX_LANG = 'fr_FR
-    b. Install Zabbix server, frontend, agent
-    # apt install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent
-    c. Create initial database
-    Documentation
-
-    Make sure you have database server up and running.
-
-    Run the following on your database host.
-    # mysql -uroot -p
-    password
-    mysql> create database zabbix character set utf8mb4 collate utf8mb4_bin;
-    mysql> create user zabbix@localhost identified by 'password';
-    mysql> grant all privileges on zabbix.* to zabbix@localhost;
-    mysql> set global log_bin_trust_function_creators = 1;
-    mysql> quit;
-
-    On Zabbix server host import initial schema and data. You will be prompted to enter your newly created password.
-    # zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -uzabbix -p zabbix
-
-    Disable log_bin_trust_function_creators option after importing database schema.
-    # mysql -uroot -p
-    password
-    mysql> set global log_bin_trust_function_creators = 0;
-    mysql> quit;
-    d. Configure the database for Zabbix server
-
-    Edit file /etc/zabbix/zabbix_server.conf
-    DBPassword=password
-    e. Start Zabbix server and agent processes
-
-    Start Zabbix server and agent processes and make it start at system boot.
-    # systemctl restart zabbix-server zabbix-agent apache2
-    # systemctl enable zabbix-server zabbix-agent apache2
-    f. Open Zabbix UI web page
-
-    The default URL for Zabbix UI when using Apache web server is http://host/zabbix
-    Start using Zabbix
-
-    Read in documentation: Quickstart guide
-    Zabbix Server Installation
-    Zabbix server installation explained
-    Zabbix basic concepts
-    Zabbix basic concepts
-    Zabbix basic concepts
-    Zabbix basic concepts, part II
-
-Need help from Zabbix team?
-
-    Consulting
-
-    Get assistance in better understanding the benefits and potential from using Zabbix
-    Technical Support
-
-    Get access to the team of Zabbix experts that know every little bit of the source code
-    Training
-
-    Get theoretical and practical knowledge in 5 days in many local languages
-
-    USA
-    Europe
-    Japan
-    China
-    Argentina
-    Brazil
-    Chile
-    Colombia
-    Mexico
-
-USA
-    +1 877-4-ZABBIX	
-
-Europe
-    +371 6778-4742	
-
-Japan
-    +81 3-4405-7338	
-
-China
-    +86 021-6978-6188
-
-Argentina
-    +54 11 3989-4060
-
-Brazil
-    +55 11 4210-5104
-
-Chile
-    +56 44 890 9410	
-
-Colombia
-    +57 1 3819310	
-
-Mexico
-    +52 55 8526 2606	
-
-Find local partner
-Contact us
-
-';
+$ZBX_LANG = 'fr_FR';
 // Zabbix GUI configuration file.
 $DB['TYPE']                     = 'MYSQL';
 $DB['SERVER']                   = '${db}';
@@ -178,7 +79,31 @@ $DB['DOUBLE_IEEE754']           = true;
 // PHP Time zone
 $PHP_TZ = 'Europe/Paris';
 // User  webserver
-$ZBX_WEB_USER = 'www-data';
+$ZBX_WEB_USER = 'www-data';gentina
+    Brazil
+    Chile
+    Colombia
+    Mexico
+USA
+    +1 877-4-ZABBIX	
+Europe
+    +371 6778-4742	
+Japan
+    +81 3-4405-7338	
+China
+    +86 021-6978-6188
+Argentina
+    +54 11 3989-4060
+Brazil
+    +55 11 4210-5104
+Chile
+    +56 44 890 9410	
+Colombia
+    +57 1 3819310	
+Mexico
+    +52 55 8526 2606	
+Find local partner
+Contact us
 // nom de la base Zabbix hostname/IP
 $ZBX_SERVER_NAME                = 'supervision_zabbix';
 // Identifiant par defaut de Zabbix
