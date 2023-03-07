@@ -123,7 +123,7 @@ sudo sed -i 's/memory_limit = 128M/memory_limit = 256M/g' /etc/php/7.4/fpm/php.i
 sudo sed -i 's/post_max_size = 8M/post_max_size = 3G/g' /etc/php/7.4/fpm/php.ini
 sudo service php7.4-fpm restart
 sudo service apache2 restart
-sudo service mariadb restart
+
 
     echo -e "${bleu}**************************** 16. configuration du fichier wp-confing.php ***************************************"
 
