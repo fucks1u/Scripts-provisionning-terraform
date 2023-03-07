@@ -33,24 +33,8 @@ sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/apache2/php.ini
 
         echo -e "${bleu}**************************** \\ Ajouter une base de donneés Zabbix à l'utilisateur zabbix (Mariadb) // **********************************"
 
-#echo "mysql-server mysql-server/root_password password password" | sudo debconf-set-selections
-#echo "mysql-server mysql-server/root_password_again password password" | sudo debconf-set-selections
-
-#sudo mysql -u root -ppassword <<SQL_QUERY
-#CREATE DATABASE zabbix CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
-#CREATE USER 'zabbix'@'localhost' IDENTIFIED BY 'password';
-#GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'localhost';
-#SET GLOBAL log_bin_trust_function_creators = 1;
-#SQL_QUERY
- 
 #sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql --default-character-set=utf8mb4 -h ${bdd} -u zabbix -p${passzabbix} zabbix
 sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql -h ${bdd} -u zabbix -p${pass} zabbix
-
-#        echo -e "${bleu}************************************************ \\ Configuration Mariadb-2 // *********************************************************"
-
-#sudo mysql -u root -ppassword <<SQL_QUERY
-#SET GLOBAL log_bin_trust_function_creators = 0;
-#SQL_QUERY
 
         echo -e "${bleu}*************************************************** \\ Configuration-Gui-zabbix // *****************************************************"
 
@@ -93,11 +77,11 @@ $ZBX_PASSWORD = 'zabbix';
 $IMAGE_FORMAT_DEFAULT   = IMAGE_FORMAT_PNG;
 EOF
 
-#remplacement des valeurs par les variables
 sudo sed -i "s/ip_database/$bdd/" /etc/zabbix/web/zabbix.conf.php
 sudo sed -i "s/pass_database/$pass/" /etc/zabbix/web/zabbix.conf.php
 
     echo -e "${bleu}*************************************** \\ supprimer la page par defaut index.html // ******************"
+    
 sudo rm -rf /var/www/html/index.html
 sudo sed -i 's#DocumentRoot /var/www/html#DocumentRoot /usr/share/zabbix#g' /etc/apache2/sites-available/000-default.conf
 
@@ -106,6 +90,7 @@ sudo chown www-data:www-data /etc/zabbix/web/zabbix.conf.php
 
 
         echo -e "${bleu}*********************************************** \\ Redemarre tout les services // ******************************************************"
+
 sudo service apache2 restart
 sudo service zabbix-server restart
 sudo service zabbix-agent restart
