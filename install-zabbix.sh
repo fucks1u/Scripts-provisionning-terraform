@@ -60,7 +60,7 @@ sudo cat <<"EOF" > /etc/zabbix/web/zabbix.conf.php
 $ZBX_LANG = 'fr_FR';
 // Zabbix GUI configuration file.
 $DB['TYPE']                     = 'MYSQL';
-$DB['SERVER']                   = '${bdd}';
+$DB['SERVER']                   = '${bdd}';    // Probleme : Comment un fichier php pourra récupérer adresse ip de la base de données !!
 $DB['PORT']                     = '0';
 $DB['DATABASE']                 = 'zabbix';
 $DB['USER']                     = 'zabbix';
