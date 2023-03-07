@@ -58,31 +58,7 @@ $ZBX_LANG = 'fr_FR';
 $DB['TYPE']                     = 'MYSQL';
 $DB['SERVER']                   = '${db}';
 $DB['PORT']                     = '0';
-$DB['DATgentina
-    Brazil
-    Chile
-    Colombia
-    Mexico
-USA
-    +1 877-4-ZABBIX	
-Europe
-    +371 6778-4742	
-Japan
-    +81 3-4405-7338	
-China
-    +86 021-6978-6188
-Argentina
-    +54 11 3989-4060
-Brazil
-    +55 11 4210-5104
-Chile
-    +56 44 890 9410	
-Colombia
-    +57 1 3819310	
-Mexico
-    +52 55 8526 2606	
-Find local partner
-Contact usABASE']                 = 'zabbix';
+$DB['DATABASE']                 = 'zabbix';
 $DB['USER']                     = 'zabbix';
 $DB['PASSWORD']                 = 'passzabbix';
 // Schema name. Used for PostgreSQL.
