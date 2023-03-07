@@ -2,9 +2,9 @@
 
 bleu="\e[1;34m"
 
-$bdd="34.107.111.77"
-$zab="35.246.188.16"
-$pass="passzabbix"
+bdd="34.107.111.77"
+zab="35.246.188.16"
+pass="passzabbix"
 
         echo -e "${bleu}************************************** \\ Installation des paquets Zabbix // ********************************************************"
 
@@ -95,7 +95,7 @@ EOF
 
 #remplacement des valeurs par les variables
 sudo sed -i "s/ip_database/$bdd/" /etc/zabbix/web/zabbix.conf.php
-sudo sed -i "s/pass_zabbix/$pass/" /etc/zabbix/web/zabbix.conf.php
+sudo sed -i "s/pass_database/$pass/" /etc/zabbix/web/zabbix.conf.php
 
 sudo chmod 600 /etc/zabbix/web/zabbix.conf.php
 sudo chown www-data:www-data /etc/zabbix/web/zabbix.conf.php
