@@ -36,7 +36,7 @@ sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/apache2/php.ini
         echo -e "${bleu}**************************** \\ Ajouter une base de donneés Zabbix à l'utilisateur zabbix (Mariadb) // **********************************"
 
 #sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql --default-character-set=utf8mb4 -h ${bdd} -u zabbix -p${passzabbix} zabbix
-sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql -h ${bdd} -u zabbix -p${pass} zabbix
+sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql -h $bdd -u zabbix -p$pass zabbix
 
         echo -e "${bleu}*************************************************** \\ Configuration-Gui-zabbix // *****************************************************"
 
