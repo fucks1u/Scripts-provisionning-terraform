@@ -69,38 +69,17 @@ NameVirtualHost *:80
 </VirtualHost>
 EOF
 
-    echo -e "${bleu}****************************** 9.  Installation de mariadb-client  ********************************"
+    echo -e "${bleu}****************************** 9.  Installation zabbix Agent  ********************************"
 
-sudo apt-get -y install mariadb-client
+sudo apt-get -y install zabbix-agent
 
-#    echo -e "${bleu}************************* 10. Securiser la base de donnée MariaDB  *******************************************"
+    echo -e "${bleu}************************* 10. Configuration zabbix agent *******************************************"
 
-#sudo mysql_secure_installation <<EOF
-#y
-#Switch to unix_socket authentication
-#n
-#Change the root password
-#y
-#password
-#password
-#Remove anonymous users?
-#y
-#Disallow root login remotely?
-#y
-#Remove test database and access to it?
-#y
-# Reload privilege tables now?
-#y
-#EOF
+sudo sed -i 's/# DBHost=localhost/DBHost=db.local/' /etc/zabbix/zabbix_agentd.conf  #### METTRE IP DB au lieu de db.local######
 
 
-#    echo -e "${bleu}******************** 11.  Creation d'une base de donnee et de son utilisateur pour Wordpress *****************"
+    echo -e "${bleu}******************** 11.  PHP *****************"
 
-#sudo mysql -u root -ppassword <<SQL_QUERY
-#CREATE DATABASE wpdata CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
-#CREATE USER 'wpuser'@'localhost' IDENTIFIED BY 'password';
-#GRANT ALL PRIVILEGES ON wpdata.* TO 'wpuser'@'localhost';
-#SQL_QUERY
 
 
     echo -e "${bleu}********************* 12. Installation du PHP et de ses modules nécessaire  ************************************"
@@ -166,6 +145,7 @@ sudo rm -rf /var/www/html/wp-content/themes/twentytwentytwo/
     
 sudo service php7.4-fpm restart
 sudo service apache2 restart
+sudo service zabbix-agent restart
 sudo a2enmod rewrite
 sudo a2enmod vhost_alias
 
