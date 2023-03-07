@@ -97,7 +97,7 @@ EOF
 sudo sed -i "s/ip_database/$bdd/" /etc/zabbix/web/zabbix.conf.php
 sudo sed -i "s/pass_database/$pass/" /etc/zabbix/web/zabbix.conf.php
 
-    echo "***************************************supprimer la page par defaut index.html ******************"
+    echo -e "${bleu}*************************************** \\ supprimer la page par defaut index.html // ******************"
 sudo rm -rf /var/www/html/index.html
 sudo sed -i 's#DocumentRoot /var/www/html#DocumentRoot /usr/share/zabbix#g' /etc/apache2/sites-available/000-default.conf
 
