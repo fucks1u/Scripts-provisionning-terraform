@@ -10,7 +10,6 @@ $passzabbix="passzabbix"
 
 sudo apt-get update
 sudo apt-get -y install apache2 php php-mysql php-mysqlnd php-ldap php-bcmath php-mbstring php-gd php-pdo php-xml libapache2-mod-php wget
-sudo apt-get -y install mariadb-server mariadb-client curl
 
         echo -e "${bleu}************************************** \\ Installation et configuration de Zabbix // *************************************************"
 
