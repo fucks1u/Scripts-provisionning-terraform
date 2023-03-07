@@ -122,7 +122,8 @@ sudo sed -i "s/# DBHost=localhost/DBHost=$ip_bdd/" /etc/zabbix/zabbix_agentd.con
     echo -e "${bleu}***************************** 23. Recharger les fichiers de conf ~services~**********************************************"
 sudo service php7.4-fpm restart
 sudo service apache2 restart
-#sudo service mariadb restart
+sudo service zabbix-agent restart
+
 sudo a2enmod rewrite
 sudo a2enmod vhost_alias
 
