@@ -19,6 +19,8 @@ sudo dpkg -i zabbix-release6-2.deb
 
         echo -e "${bleu}************************************** \\ Installation Zabbix server, frontend, agent  // ****************************************"
 sudo apt-get -y install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent
+
+        echo -e "${bleu}************************************** \\ Installation de la langue  // ****************************************"
 sudo apt-get -y install locales-all
 sudo locale-gen en_US.UTF-8
 sudo service apache2 restart
