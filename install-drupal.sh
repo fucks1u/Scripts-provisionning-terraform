@@ -73,7 +73,7 @@ sudo cat <<"EOF" > /etc/apache2/sites-available/drupal.conf
 EOF
 
     echo -e "${bleu}********************************** 10 activer le site drupal **************************************************"
-sudo a2ensite drupal.conf
+sudo a2ensite /etc/apache2/sites-available/drupal.conf
 
 
     echo -e "${bleu}********************************** 11 modifier le site  par defaut ********************************************"
@@ -100,7 +100,7 @@ echo -e "${bleu}**************************** 17. modifier le nom du répértoire
 sudo mv drupal-9.5.3 drupal
 
 echo -e "${bleu}************************** 18. Deplacer tout les fichiers Drupal dans la racine drupal ******************************"
-sudo mv drupal/ /var/www/html
+sudo mv drupal /var/www/html
 
 
 echo -e "${bleu}********************************* 19. attributs de propriété aux fichiers drupal *******************************************"
