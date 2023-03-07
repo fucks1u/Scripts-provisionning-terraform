@@ -23,6 +23,7 @@ passzabbix="passzabbix"
 ipdb="34.107.111.77"
 ipzab="35.246.188.16"
 ipwp="34.159.176.155"
+ipdl="34.159.76.155"
 
 set -ex
 sudo apt-get update
