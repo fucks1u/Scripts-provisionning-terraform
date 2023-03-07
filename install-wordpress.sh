@@ -75,7 +75,7 @@ sudo apt-get -y install zabbix-agent
 
     echo -e "${bleu}************************* 10. Configuration zabbix agent *******************************************"
 
-sudo sed -i 's/# DBHost=localhost/DBHost=db.local/' /etc/zabbix/zabbix_agentd.conf  #### METTRE IP DB au lieu de db.local######
+sudo sed -i "s/# DBHost=localhost/DBHost=$ip_bdd/" /etc/zabbix/zabbix_agentd.conf 
 
 
     echo -e "${bleu}******************** 11.  PHP *****************"
