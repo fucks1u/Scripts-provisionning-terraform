@@ -17,9 +17,9 @@ wget https://repo.zabbix.com/zabbix/6.2/debian/pool/main/z/zabbix-release/zabbix
 sudo dpkg -i zabbix-release6-2.deb
 
         echo -e "${bleu}************************************** \\ Installation Zabbix server, frontend, agent  // ****************************************"
-sudo apt-get -y install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent
 sudo apt update
-sudo apt upgrade
+sudo apt-get -y install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent
+
 
         echo -e "${bleu}************************************** \\ Installation de la langue  // ****************************************"
 sudo apt-get -y install locales-all
