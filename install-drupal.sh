@@ -18,7 +18,9 @@ abort()
 trap 'abort' 0
 
 set -e
-    # A exécuter sur wordpress
+
+ip_bdd="34.107.111.77"
+
     echo -e "${bleu}******************************* 1. Installation du service Apache2 ********************************************"
    
 sudo apt-get update
@@ -85,40 +87,6 @@ sudo cat <<"EOF" > /etc/apache2/sites-available/000-default.conf
 </VirtualHost>
 EOF
 
-#    echo -e "${bleu}****************************** 12.  Installation de la base de donnée MariaDB  ********************************"
-
-#sudo apt-get -y install mariadb-server mariadb-client curl wget
-
-#    echo -e "${bleu}************************* 13. Securiser la base de donnée MariaDB  *******************************************"
-
-#sudo mysql_secure_installation <<EOF
-#y
-#Switch to unix_socket authentication
-#n
-#Change the root password
-#y
-#password
-#password
-#Remove anonymous users?
-#y
-#Disallow root login remotely?
-#y
-#Remove test database and access to it?
-#y
-# Reload privilege tables now?
-#y
-#EOF
-
-
-#    echo -e "${bleu}******************** 14.  Création d'une base de donnee et de son utilisateur pour drupal *****************"
-
-#sudo mysql -u root -ppassword <<SQL_QUERY
-#CREATE DATABASE dldata CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
-#CREATE USER 'dluser'@'localhost' IDENTIFIED BY 'password';
-#GRANT ALL PRIVILEGES ON dldata.* TO 'dluser'@'localhost';
-#SQL_QUERY
-
-
     echo -e "${bleu}********************* 15. Installation du PHP et de ses modules nécessaire  ************************************"
     
 sudo apt-get install -y libnss-mdns php libapache2-mod-php php-fpm php-curl php-cli php-zip php-mysql php-xml php-mbstring php-gd php-xmlrpc php-imagick php-intl php-soap zabbix-agent
@@ -138,13 +106,20 @@ sudo mv drupal/ /var/www/html
 echo -e "${bleu}********************************* 19. attributs de propriété aux fichiers drupal *******************************************"
 sudo chown -R www-data:www-data /var/www/html/drupal
 
+
 echo -e "${bleu}******************************* 20. Supprimer les fichiers par defauts *****************************************************"
 sudo rm -rf /var/www/html/index.html
 
+echo -e "${bleu}****************************** 21.  Installation zabbix Agent  ********************************"
 
+sudo apt-get -y install zabbix-agent
+
+    echo -e "${bleu}************************* 22. Configuration zabbix agent *******************************************"
+
+sudo sed -i "s/# DBHost=localhost/DBHost=$ip_bdd/" /etc/zabbix/zabbix_agentd.conf 
 
     
-    echo -e "${bleu}***************************** 16. Recharger les fichiers de conf ~services~**********************************************"
+    echo -e "${bleu}***************************** 23. Recharger les fichiers de conf ~services~**********************************************"
 sudo service php7.4-fpm restart
 sudo service apache2 restart
 #sudo service mariadb restart
@@ -159,5 +134,5 @@ echo -e >&2 "${green}
 ************* INSTALLATION DONE SUCCESSFULLY *************
 **********************************************************
 "
-echo -e "${bleu}*************************************************FIN****************************************************************"
+
 
