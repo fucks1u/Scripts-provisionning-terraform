@@ -4,7 +4,7 @@ bleu="\e[1;34m"
 
 $bdd="34.107.111.77"
 $zab="35.246.188.16"
-$passzabbix="passzabbix"
+$pass="passzabbix"
 
         echo -e "${bleu}************************************** \\ Installation des paquets Zabbix // ********************************************************"
 
@@ -27,7 +27,7 @@ sudo locale-gen en_US.UTF-8
 sudo service apache2 restart
 
 sudo apt-get update
-sudo sed -i 's/# DBPassword=/DBPassword=passzabbix/' /etc/zabbix/zabbix_server.conf
+sudo sed -i 's/# DBPassword=/DBPassword=$pass/' /etc/zabbix/zabbix_server.conf
 sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/cli/php.ini
 sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/apache2/php.ini
 
@@ -44,7 +44,7 @@ sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/apache2/php.ini
 #SQL_QUERY
  
 #sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql --default-character-set=utf8mb4 -h ${bdd} -u zabbix -p${passzabbix} zabbix
-sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql -h ${bdd} -u zabbix -p${passzabbix} zabbix
+sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql -h ${bdd} -u zabbix -p${pass} zabbix
 
 #        echo -e "${bleu}************************************************ \\ Configuration Mariadb-2 // *********************************************************"
 
@@ -92,6 +92,10 @@ $ZBX_USER = 'Admin';
 $ZBX_PASSWORD = 'zabbix';
 $IMAGE_FORMAT_DEFAULT   = IMAGE_FORMAT_PNG;
 EOF
+
+#remplacement des valeurs par les variables
+sudo sed -i "s/ip_database/$bdd/" /etc/zabbix/web/zabbix.conf.php
+sudo sed -i "s/pass_zabbix/$pass/" /etc/zabbix/web/zabbix.conf.php
 
 sudo chmod 600 /etc/zabbix/web/zabbix.conf.php
 sudo chown www-data:www-data /etc/zabbix/web/zabbix.conf.php
