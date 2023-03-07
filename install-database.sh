@@ -20,8 +20,9 @@ passdl="passdl"
 passmdb="passmdb"
 passzabbix="passzabbix"
 
-ipzab="34.107.0.74"
-ipwp="35.198.102.242"
+ipdb="34.107.111.77"
+ipzab="35.246.188.16"
+ipwp="34.159.76.155"
 
 set -ex
 sudo apt-get update
@@ -59,7 +60,7 @@ sed -i 's/^bind-address.*/bind-address = */' /etc/mysql/mariadb.conf.d/50-server
 
     echo "Telechargement des donnees necessaires a Zabbix"
 
-#zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -h$ipdb -uzabbix -p$p>
+zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -h$ipdb -uzabbix -p$p>
 sudo mysql -uroot -e "SET GLOBAL log_bin_trust_function_creators = 0;"
 
 
