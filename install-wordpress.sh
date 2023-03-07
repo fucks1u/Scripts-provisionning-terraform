@@ -18,6 +18,11 @@ abort()
 trap 'abort' 0
 
 set -e
+
+user="wpuser"
+pass="passwp"
+ip_bdd="34.159.76.155"
+
     # A exécuter sur wordpress
     echo -e "${bleu}******************************* 1. Installation du service Apache2 ******************************************"
    
@@ -128,9 +133,9 @@ sudo cat <<"EOF" > /var/www/html/wp-config.php
 <?php
 # Created by setup-mysql
 define('DB_NAME', 'wpdata');
-define('DB_USER', 'wpuser');
-define('DB_PASSWORD', 'password');
-define('DB_HOST', 'localhost');
+define('DB_USER', 'user_to_replace');
+define('DB_PASSWORD', 'password_to_replace');
+define('DB_HOST', 'host_to_replace');
 $table_prefix = 'wp_';
 define( 'WP_DEBUG', false );
 if ( ! defined( 'ABSPATH' ) ) {
@@ -138,6 +143,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 require_once ABSPATH . 'wp-settings.php';
 EOF
+
+#remplacement des valeurs par les variables
+sudo sed -i "s/user_to_replace/$user/" /var/www/html/wp-config.php
+sudo sed -i "s/password_to_replace/$pass/" /var/www/html/wp-config.php
+sudo sed -i "s/host_to_replace/$ip_bdd/" /var/www/html/wp-config.php
 
     echo  -e "${bleu}*********************** 17. Droit de lecture seule au fichier wp-confing.php **********************************"
 
@@ -155,7 +165,6 @@ sudo rm -rf /var/www/html/wp-content/themes/twentytwentytwo/
     echo -e "${bleu}************************************* 19. Recharger les services ***********************************************"
     
 sudo service php7.4-fpm restart
-#sudo service mariadb restart
 sudo service apache2 restart
 sudo a2enmod rewrite
 sudo a2enmod vhost_alias
