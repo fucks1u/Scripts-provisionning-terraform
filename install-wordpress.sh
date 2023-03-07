@@ -69,9 +69,9 @@ NameVirtualHost *:80
 </VirtualHost>
 EOF
 
-    echo -e "${bleu}****************************** 9.  Installation de mysql  ********************************"
+    echo -e "${bleu}****************************** 9.  Installation de mariadb-client  ********************************"
 
-sudo apt-get -y install mysql-client
+sudo apt-get -y install mariadb-client
 
 #    echo -e "${bleu}************************* 10. Securiser la base de donnée MariaDB  *******************************************"
 
