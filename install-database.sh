@@ -88,8 +88,7 @@ EOF
 
 # a mettre sur la machine hebergant zabbix
 #zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -uzabbix -p$passzabbix zabbix
-
-sudo mysql -uroot -e "SET GLOBAL log_bin_trust_function_creators = 0;"
+#sudo mysql -uroot -e "SET GLOBAL log_bin_trust_function_creators = 0;"
 
 
     echo "************************* 9. Redemarre les services ********************************"
