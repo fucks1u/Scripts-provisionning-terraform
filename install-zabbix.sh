@@ -112,4 +112,4 @@ sudo service zabbix-agent restart
 sudo systemctl enable zabbix-server zabbix-agent apache2
 
 
-
+ 
