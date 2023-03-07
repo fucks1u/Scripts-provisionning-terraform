@@ -85,38 +85,38 @@ sudo cat <<"EOF" > /etc/apache2/sites-available/000-default.conf
 </VirtualHost>
 EOF
 
-    echo -e "${bleu}****************************** 12.  Installation de la base de donnée MariaDB  ********************************"
+#    echo -e "${bleu}****************************** 12.  Installation de la base de donnée MariaDB  ********************************"
 
-sudo apt-get -y install mariadb-server mariadb-client curl wget
+#sudo apt-get -y install mariadb-server mariadb-client curl wget
 
-    echo -e "${bleu}************************* 13. Securiser la base de donnée MariaDB  *******************************************"
+#    echo -e "${bleu}************************* 13. Securiser la base de donnée MariaDB  *******************************************"
 
-sudo mysql_secure_installation <<EOF
-y
+#sudo mysql_secure_installation <<EOF
+#y
 #Switch to unix_socket authentication
-n
+#n
 #Change the root password
-y
-password
-password
+#y
+#password
+#password
 #Remove anonymous users?
-y
+#y
 #Disallow root login remotely?
-y
+#y
 #Remove test database and access to it?
-y
+#y
 # Reload privilege tables now?
-y
-EOF
+#y
+#EOF
 
 
-    echo -e "${bleu}******************** 14.  Création d'une base de donnee et de son utilisateur pour drupal *****************"
+#    echo -e "${bleu}******************** 14.  Création d'une base de donnee et de son utilisateur pour drupal *****************"
 
-sudo mysql -u root -ppassword <<SQL_QUERY
-CREATE DATABASE dldata CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
-CREATE USER 'dluser'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON dldata.* TO 'dluser'@'localhost';
-SQL_QUERY
+#sudo mysql -u root -ppassword <<SQL_QUERY
+#CREATE DATABASE dldata CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+#CREATE USER 'dluser'@'localhost' IDENTIFIED BY 'password';
+#GRANT ALL PRIVILEGES ON dldata.* TO 'dluser'@'localhost';
+#SQL_QUERY
 
 
     echo -e "${bleu}********************* 15. Installation du PHP et de ses modules nécessaire  ************************************"
@@ -147,7 +147,7 @@ sudo rm -rf /var/www/html/index.html
     echo -e "${bleu}***************************** 16. Recharger les fichiers de conf ~services~**********************************************"
 sudo service php7.4-fpm restart
 sudo service apache2 restart
-sudo service mariadb restart
+#sudo service mariadb restart
 sudo a2enmod rewrite
 sudo a2enmod vhost_alias
 
