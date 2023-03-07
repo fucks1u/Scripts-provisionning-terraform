@@ -21,14 +21,15 @@ sudo apt-get -y install locales-all
 sudo locale-gen en_US.UTF-8
 sudo service apache2 restart
 
-apt-get update
-echo "mysql-server mysql-server/root_password password password" | sudo debconf-set-selections
-echo "mysql-server mysql-server/root_password_again password password" | sudo debconf-set-selections
+sudo apt-get update
 sudo sed -i 's/# DBPassword=/DBPassword=password/' /etc/zabbix/zabbix_server.conf
 sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/cli/php.ini
 sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/apache2/php.ini
 
         echo -e "${bleu}**************************** \\ Ajouter une base de donneés Zabbix à l'utilisateur zabbix (Mariadb) // **********************************"
+
+#echo "mysql-server mysql-server/root_password password password" | sudo debconf-set-selections
+#echo "mysql-server mysql-server/root_password_again password password" | sudo debconf-set-selections
 
 #sudo mysql -u root -ppassword <<SQL_QUERY
 #CREATE DATABASE zabbix CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
@@ -56,7 +57,31 @@ $ZBX_LANG = 'fr_FR';
 $DB['TYPE']                     = 'MYSQL';
 $DB['SERVER']                   = '${db}';
 $DB['PORT']                     = '0';
-$DB['DATABASE']                 = 'zabbix';
+$DB['DATgentina
+    Brazil
+    Chile
+    Colombia
+    Mexico
+USA
+    +1 877-4-ZABBIX	
+Europe
+    +371 6778-4742	
+Japan
+    +81 3-4405-7338	
+China
+    +86 021-6978-6188
+Argentina
+    +54 11 3989-4060
+Brazil
+    +55 11 4210-5104
+Chile
+    +56 44 890 9410	
+Colombia
+    +57 1 3819310	
+Mexico
+    +52 55 8526 2606	
+Find local partner
+Contact usABASE']                 = 'zabbix';
 $DB['USER']                     = 'zabbix';
 $DB['PASSWORD']                 = 'passzabbix';
 // Schema name. Used for PostgreSQL.
