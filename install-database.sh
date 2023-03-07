@@ -22,7 +22,7 @@ passzabbix="passzabbix"
 
 ipdb="34.107.111.77"
 ipzab="35.246.188.16"
-ipwp="34.159.176.155"
+ipwp="34.159.176.29"
 ipdl="34.159.76.155"
 
 set -ex
