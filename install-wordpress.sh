@@ -21,7 +21,7 @@ set -e
 
 user="wpuser"
 pass="passwp"
-ip_bdd="34.159.76.155"
+ip_bdd="34.107.111.77"
 
     # A exécuter sur wordpress
     echo -e "${bleu}******************************* 1. Installation du service Apache2 ******************************************"
