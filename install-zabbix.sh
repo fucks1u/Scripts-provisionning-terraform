@@ -4,6 +4,7 @@ bleu="\e[1;34m"
 
 $bdd="34.107.111.77"
 $zab="35.246.188.16"
+$passzabbix="passzabbix"
 
         echo -e "${bleu}************************************** \\ Installation des paquets Zabbix // ********************************************************"
 
@@ -37,7 +38,7 @@ sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/apache2/php.ini
 #SET GLOBAL log_bin_trust_function_creators = 1;
 #SQL_QUERY
  
-sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql --default-character-set=utf8mb4 -h '${bdd}' -uzabbix -ppassword zabbix
+sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql --default-character-set=utf8mb4 -h '${bdd}' -uzabbix -p'$passzabbix' zabbix
 
 #        echo -e "${bleu}************************************************ \\ Configuration Mariadb-2 // *********************************************************"
 
