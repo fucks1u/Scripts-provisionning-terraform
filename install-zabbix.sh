@@ -27,7 +27,7 @@ sudo locale-gen en_US.UTF-8
 sudo service apache2 restart
 
 sudo apt-get update
-sudo sed -i 's/# DBPassword=/DBPassword=$pass/' /etc/zabbix/zabbix_server.conf
+sudo sed -i "s/# DBPassword=/DBPassword=$pass/" /etc/zabbix/zabbix_server.conf
 sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/cli/php.ini
 sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/apache2/php.ini
 
