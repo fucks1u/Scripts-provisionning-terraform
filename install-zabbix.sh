@@ -61,11 +61,11 @@ sudo cat <<"EOF" > /etc/zabbix/web/zabbix.conf.php
 $ZBX_LANG = 'fr_FR';
 // Zabbix GUI configuration file.
 $DB['TYPE']                     = 'MYSQL';
-$DB['SERVER']                   = '${bdd}';    // Probleme : Comment un fichier php pourra récupérer adresse ip de la base de données !!
+$DB['SERVER']                   = 'ip_database';    // Probleme : Comment un fichier php pourra récupérer adresse ip de la base de données !!
 $DB['PORT']                     = '0';
 $DB['DATABASE']                 = 'zabbix';
 $DB['USER']                     = 'zabbix';
-$DB['PASSWORD']                 = 'passzabbix';
+$DB['PASSWORD']                 = 'pass_database';
 // Schema name. Used for PostgreSQL.
 $DB['SCHEMA']                   = '';
 // Used TLS connection.
