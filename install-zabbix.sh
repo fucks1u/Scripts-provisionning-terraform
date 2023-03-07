@@ -97,7 +97,7 @@ sudo chown www-data:www-data /etc/zabbix/web/zabbix.conf.php
 
         echo -e "${bleu}*********************************************** \\ Redemarre tout les services // ******************************************************"
 sudo service apache2 restart
-sudo service mariadb restart
+$sudo service mariadb restart
 sudo service zabbix-server restart
 sudo service zabbix-agent restart
 sudo systemctl enable zabbix-server zabbix-agent apache2
