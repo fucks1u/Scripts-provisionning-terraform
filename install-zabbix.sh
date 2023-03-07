@@ -16,6 +16,7 @@ sudo apt-get -y install mariadb-server mariadb-client curl
 
 wget https://repo.zabbix.com/zabbix/6.2/debian/pool/main/z/zabbix-release/zabbix-release_6.2-4%2Bdebian11_all.deb
 sudo dpkg -i zabbix-release_6.2-4%2Bdebian11_all.deb
+
 sudo apt-get -y install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent
 sudo apt-get -y install locales-all
 sudo locale-gen en_US.UTF-8
