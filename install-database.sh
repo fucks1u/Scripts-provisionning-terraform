@@ -1,5 +1,9 @@
 #!/bin/bash
 
+red='\033[31m'
+green='\033[32m'
+bleu='\e[1;34m'
+
 abort()
 {
     echo -e >&2 "${red}
@@ -20,6 +24,7 @@ passdl="passdl"
 passmdb="passmdb"
 passzabbix="passzabbix"
 
+#Ip
 ipdb="34.107.111.77"
 ipzab="35.246.188.16"
 ipwp="34.159.176.29"
@@ -28,25 +33,26 @@ ipdl="34.159.76.155"
 set -ex
 sudo apt-get update
 
-    echo "******************** 1.  Installation des paquets MariaDB  ***************"
+    echo "${bleu}******************** 1.  Installation des paquets MariaDB  ********************"
 
 sudo apt-get -y install mariadb-server mariadb-client curl wget
 
-    echo "Creation de la base de donnee WordPress et son utilisateur"
+    echo "${bleu}******************** 2.  Création des données  ********************"
+    echo "${bleu}***** Wordpress *****"
 
 sudo mysql -uroot -e "CREATE DATABASE wpdata CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;"
 sudo mysql -uroot -e "CREATE USER wpuser@'${ipwp}' IDENTIFIED BY '${passwp}';"
 sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON wpdata.* TO 'wpuser'@'${ipwp}';"
 sudo mysql -uroot -e "FLUSH PRIVILEGES;"
 
-   echo "Creation de la base de donnee Drupal et son utilisateur"
+   echo "${bleu}***** Drupal *****"
 
 sudo mysql -uroot -e "CREATE DATABASE dldata CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;"
 sudo mysql -uroot -e "CREATE USER dluser@'${ipdl}' IDENTIFIED BY '${passdl}';"
 sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON dldata.* TO 'dluser'@'${ipdl}';"
 sudo mysql -uroot -e "FLUSH PRIVILEGES;"
 
-    echo "Creation de la base de donnee Zabbix et son utilisateur"
+    echo "${bleu}***** Zabbix *****"
 
 sudo mysql -uroot -e "CREATE DATABASE zabbix DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;"
 sudo mysql -uroot -e "CREATE USER 'zabbix'@'${ipzab}' IDENTIFIED BY '${passzabbix}';"
@@ -54,12 +60,11 @@ sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'${ipzab}';"
 sudo mysql -uroot -e "FLUSH PRIVILEGES;"
 sudo mysql -uroot -e "SET GLOBAL log_bin_trust_function_creators = 1;"
 
-    echo "Modification de l'acces a distance du serveur MariaDB"
+    echo "${bleu}***** Modification de l'accès à distance du serveur MariaDB *****"
 
 sed -i 's/^bind-address.*/bind-address = */' /etc/mysql/mariadb.conf.d/50-server.cnf
 
-
-    echo "******************** 3. Securiser la base de donnée MariaDB  *********************"
+    echo "${bleu}******************** 3. Sécurisation de la base de données MariaDB  ********************"
 
 mysql_secure_installation <<EOF
 y
@@ -79,22 +84,19 @@ y
 y
 EOF
 
-echo -e "${bleu}****************************** 4.  Installation zabbix Agent  ********************************"
+echo -e "${bleu}******************** 4.  Installation zabbix Agent  ********************"
 
 sudo apt-get -y install zabbix-agent
 
-    echo -e "${bleu}************************* 5. Configuration zabbix agent *******************************************"
+    echo -e "${bleu}************************* 5. Configuration zabbix agent ********************"
 
 sudo sed -i "s/# DBHost=localhost/DBHost=$ipdb/" /etc/zabbix/zabbix_agentd.conf
 sudo sed -i "s/Server=127.0.0.1/Server=35.246.188.16/" /etc/zabbix/zabbix_agentd.conf
 
-
-
-    echo "************************* 6. Redemarre les services ********************************"
+    echo "${bleu}******************** 6. Redemarrage des services ********************"
 
 sudo service mariadb restart
 sudo service zabbix-agent restart
-
 
 trap : 0
 
