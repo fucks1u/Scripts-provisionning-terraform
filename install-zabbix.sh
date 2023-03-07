@@ -2,6 +2,9 @@
 
 bleu="\e[1;34m"
 
+$bdd="34.107.111.77"
+$zab="35.246.188.16"
+
         echo -e "${bleu}************************************** \\ Installation des paquets Zabbix // ********************************************************"
 
 sudo apt-get update
@@ -27,20 +30,20 @@ sudo sed -i '963i\date.timezone = "Europe/Paris"' /etc/php/7.4/apache2/php.ini
 
         echo -e "${bleu}**************************** \\ Ajouter une base de donneés Zabbix à l'utilisateur zabbix (Mariadb) // **********************************"
 
-sudo mysql -u root -ppassword <<SQL_QUERY
-CREATE DATABASE zabbix CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
-CREATE USER 'zabbix'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'localhost';
-SET GLOBAL log_bin_trust_function_creators = 1;
-SQL_QUERY
+#sudo mysql -u root -ppassword <<SQL_QUERY
+#CREATE DATABASE zabbix CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+#CREATE USER 'zabbix'@'localhost' IDENTIFIED BY 'password';
+#GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'localhost';
+#SET GLOBAL log_bin_trust_function_creators = 1;
+#SQL_QUERY
  
-sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql --default-character-set=utf8mb4 -uzabbix -ppassword zabbix
+#sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | sudo mysql --default-character-set=utf8mb4 -uzabbix -ppassword zabbix
 
-        echo -e "${bleu}************************************************ \\ Configuration Mariadb-2 // *********************************************************"
+#        echo -e "${bleu}************************************************ \\ Configuration Mariadb-2 // *********************************************************"
 
-sudo mysql -u root -ppassword <<SQL_QUERY
-SET GLOBAL log_bin_trust_function_creators = 0;
-SQL_QUERY
+#sudo mysql -u root -ppassword <<SQL_QUERY
+#SET GLOBAL log_bin_trust_function_creators = 0;
+#SQL_QUERY
 
         echo -e "${bleu}*************************************************** \\ Configuration-Gui-zabbix // *****************************************************"
 
@@ -51,11 +54,11 @@ sudo cat <<"EOF" > /etc/zabbix/web/zabbix.conf.php
 $ZBX_LANG = 'fr_FR';
 // Zabbix GUI configuration file.
 $DB['TYPE']                     = 'MYSQL';
-$DB['SERVER']                   = 'localhost';
+$DB['SERVER']                   = '${db}';
 $DB['PORT']                     = '0';
 $DB['DATABASE']                 = 'zabbix';
 $DB['USER']                     = 'zabbix';
-$DB['PASSWORD']                 = 'password';
+$DB['PASSWORD']                 = 'passzabbix';
 // Schema name. Used for PostgreSQL.
 $DB['SCHEMA']                   = '';
 // Used TLS connection.
