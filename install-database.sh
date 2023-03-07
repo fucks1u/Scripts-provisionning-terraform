@@ -59,13 +59,6 @@ sudo mysql -uroot -e "SET GLOBAL log_bin_trust_function_creators = 1;"
 sed -i 's/^bind-address.*/bind-address = */' /etc/mysql/mariadb.conf.d/50-server.cnf
 
 
-    echo "Telechargement des donnees necessaires a Zabbix"
-
-#zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -h$ipdb -uzabbix -p$passzabbix
-#sudo mysql -uroot -e "SET GLOBAL log_bin_trust_function_creators = 0;"
-
-
-
     echo "******************** 3. Securiser la base de donnée MariaDB  *********************"
 
 mysql_secure_installation <<EOF
@@ -86,15 +79,18 @@ y
 y
 EOF
 
+echo -e "${bleu}****************************** 4.  Installation zabbix Agent  ********************************"
 
-# a mettre sur la machine hebergant zabbix
-#zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -uzabbix -p$passzabbix zabbix
-#sudo mysql -uroot -e "SET GLOBAL log_bin_trust_function_creators = 0;"
+sudo apt-get -y install zabbix-agent
 
+    echo -e "${bleu}************************* 5. Configuration zabbix agent *******************************************"
 
-    echo "************************* 9. Redemarre les services ********************************"
+sudo sed -i "s/# DBHost=localhost/DBHost=$ipdb/" /etc/zabbix/zabbix_agentd.conf 
+
+    echo "************************* 6. Redemarre les services ********************************"
 
 sudo service mariadb restart
+sudo service zabbix-agent restart
 
 
 trap : 0
