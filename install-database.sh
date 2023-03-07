@@ -85,7 +85,10 @@ sudo apt-get -y install zabbix-agent
 
     echo -e "${bleu}************************* 5. Configuration zabbix agent *******************************************"
 
-sudo sed -i "s/# DBHost=localhost/DBHost=$ipdb/" /etc/zabbix/zabbix_agentd.conf 
+sudo sed -i "s/# DBHost=localhost/DBHost=$ipdb/" /etc/zabbix/zabbix_agentd.conf
+sudo sed -i "s/Server=127.0.0.1/Server=35.246.188.16/" /etc/zabbix/zabbix_agentd.conf
+
+
 
     echo "************************* 6. Redemarre les services ********************************"
 
