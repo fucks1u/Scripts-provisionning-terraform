@@ -64,38 +64,38 @@ NameVirtualHost *:80
 </VirtualHost>
 EOF
 
-    echo -e "${bleu}****************************** 9.  Installation de la base de donnée MariaDB  ********************************"
+ #   echo -e "${bleu}****************************** 9.  Installation de la base de donnée MariaDB  ********************************"
 
-sudo apt-get -y install mariadb-server mariadb-client curl wget
+#sudo apt-get -y install mariadb-server mariadb-client curl wget
 
-    echo -e "${bleu}************************* 10. Securiser la base de donnée MariaDB  *******************************************"
+#    echo -e "${bleu}************************* 10. Securiser la base de donnée MariaDB  *******************************************"
 
-sudo mysql_secure_installation <<EOF
-y
+#sudo mysql_secure_installation <<EOF
+#y
 #Switch to unix_socket authentication
-n
+#n
 #Change the root password
-y
-password
-password
+#y
+#password
+#password
 #Remove anonymous users?
-y
+#y
 #Disallow root login remotely?
-y
+#y
 #Remove test database and access to it?
-y
+#y
 # Reload privilege tables now?
-y
-EOF
+#y
+#EOF
 
 
-    echo -e "${bleu}******************** 11.  Creation d'une base de donnee et de son utilisateur pour Wordpress *****************"
+#    echo -e "${bleu}******************** 11.  Creation d'une base de donnee et de son utilisateur pour Wordpress *****************"
 
-sudo mysql -u root -ppassword <<SQL_QUERY
-CREATE DATABASE wpdata CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
-CREATE USER 'wpuser'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON wpdata.* TO 'wpuser'@'localhost';
-SQL_QUERY
+#sudo mysql -u root -ppassword <<SQL_QUERY
+#CREATE DATABASE wpdata CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+#CREATE USER 'wpuser'@'localhost' IDENTIFIED BY 'password';
+#GRANT ALL PRIVILEGES ON wpdata.* TO 'wpuser'@'localhost';
+#SQL_QUERY
 
 
     echo -e "${bleu}********************* 12. Installation du PHP et de ses modules nécessaire  ************************************"
@@ -155,7 +155,7 @@ sudo rm -rf /var/www/html/wp-content/themes/twentytwentytwo/
     echo -e "${bleu}************************************* 19. Recharger les services ***********************************************"
     
 sudo service php7.4-fpm restart
-sudo service mariadb restart
+#sudo service mariadb restart
 sudo service apache2 restart
 sudo a2enmod rewrite
 sudo a2enmod vhost_alias
