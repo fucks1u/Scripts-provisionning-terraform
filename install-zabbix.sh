@@ -60,7 +60,7 @@ sudo cat <<"EOF" > /etc/zabbix/web/zabbix.conf.php
 $ZBX_LANG = 'fr_FR';
 // Zabbix GUI configuration file.
 $DB['TYPE']                     = 'MYSQL';
-$DB['SERVER']                   = '${db}';
+$DB['SERVER']                   = '${bdd}';
 $DB['PORT']                     = '0';
 $DB['DATABASE']                 = 'zabbix';
 $DB['USER']                     = 'zabbix';
