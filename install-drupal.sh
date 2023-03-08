@@ -52,11 +52,32 @@ sudo a2enmod headers
 
 echo 'ServerTokens Prod' >> /etc/apache2/apache2.conf
 
-    echo -e "${bleu}********************************** 8. Créer fich drupal *******************************************************"
+
+    echo -e "${bleu}********************* 8. Installation du PHP et de ses modules nécessaire  ************************************"
+    
+sudo apt-get install -y libnss-mdns php libapache2-mod-php php-fpm php-curl php-cli php-zip php-mysql php-xml php-mbstring php-gd php-xmlrpc php-imagick php-intl php-soap zabbix-agent
+
+ echo -e "${bleu}********************************* 9. Telechargement du CMS Drupal ************************************************"
+ 
+wget https://ftp.drupal.org/files/projects/drupal-9.5.3.tar.gz
+tar -zxvf drupal-9.5.3.tar.gz
+
+echo -e "${bleu}**************************** 10. modifier le nom du répértoire drupal ***********************************************"
+sudo mv drupal-9.5.3 drupal
+
+echo -e "${bleu}************************** 11. Deplacer tout les fichiers Drupal dans la racine drupal ******************************"
+sudo mv drupal /var/www/html
+
+
+
+    echo -e "${bleu}********************************** 12. Créer fich drupal *******************************************************"
     
 sudo touch  /etc/apache2/sites-available/drupal.conf
 
-    echo -e "${bleu}********************************** 9 Configuration apache2 **************************************************"
+     echo -e "${bleu}********************************* 13 attributs de propriété aux fichiers drupal *******************************************"
+sudo chown -R www-data:www-data /var/www/html/drupal
+
+    echo -e "${bleu}********************************** 14 Configuration apache2 **************************************************"
 sudo cat <<"EOF" > /etc/apache2/sites-available/drupal.conf
 <VirtualHost *:80>
     DocumentRoot /var/www/html/drupal
@@ -72,11 +93,11 @@ sudo cat <<"EOF" > /etc/apache2/sites-available/drupal.conf
 </VirtualHost>
 EOF
 
-    echo -e "${bleu}********************************** 10 activer le site drupal **************************************************"
+    echo -e "${bleu}********************************** 15 activer le site drupal **************************************************"
 sudo a2ensite /etc/apache2/sites-available/drupal.conf
 
 
-    echo -e "${bleu}********************************** 11 modifier le site  par defaut ********************************************"
+    echo -e "${bleu}********************************** 16 modifier le site  par defaut ********************************************"
 sudo cat <<"EOF" > /etc/apache2/sites-available/000-default.conf
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
@@ -87,40 +108,24 @@ sudo cat <<"EOF" > /etc/apache2/sites-available/000-default.conf
 </VirtualHost>
 EOF
 
-    echo -e "${bleu}********************* 15. Installation du PHP et de ses modules nécessaire  ************************************"
-    
-sudo apt-get install -y libnss-mdns php libapache2-mod-php php-fpm php-curl php-cli php-zip php-mysql php-xml php-mbstring php-gd php-xmlrpc php-imagick php-intl php-soap zabbix-agent
-
- echo -e "${bleu}********************************* 16. Telechargement du CMS Drupal ************************************************"
- 
-wget https://ftp.drupal.org/files/projects/drupal-9.5.3.tar.gz
-tar -zxvf drupal-9.5.3.tar.gz
-
-echo -e "${bleu}**************************** 17. modifier le nom du répértoire drupal ***********************************************"
-sudo mv drupal-9.5.3 drupal
-
-echo -e "${bleu}************************** 18. Deplacer tout les fichiers Drupal dans la racine drupal ******************************"
-sudo mv drupal /var/www/html
 
 
-echo -e "${bleu}********************************* 19. attributs de propriété aux fichiers drupal *******************************************"
-sudo chown -R www-data:www-data /var/www/html/drupal
 
 
-echo -e "${bleu}******************************* 20. Supprimer les fichiers par defauts *****************************************************"
+echo -e "${bleu}******************************* 17. Supprimer les fichiers par defauts *****************************************************"
 sudo rm -rf /var/www/html/index.html
 
-echo -e "${bleu}****************************** 21.  Installation zabbix Agent  ********************************"
+echo -e "${bleu}****************************** 18.  Installation zabbix Agent  ********************************"
 
 sudo apt-get -y install zabbix-agent
 
-    echo -e "${bleu}************************* 22. Configuration zabbix agent *******************************************"
+    echo -e "${bleu}************************* 19. Configuration zabbix agent *******************************************"
 
 sudo sed -i "s/# DBHost=localhost/DBHost=$ip_bdd/" /etc/zabbix/zabbix_agentd.conf 
 sudo sed -i "s/Server=127.0.0.1/Server=35.246.188.16/" /etc/zabbix/zabbix_agentd.conf
 
     
-    echo -e "${bleu}***************************** 23. Recharger les fichiers de conf ~services~**********************************************"
+    echo -e "${bleu}***************************** 20. Recharger les fichiers de conf ~services~**********************************************"
 sudo service php7.4-fpm restart
 sudo service apache2 restart
 sudo service zabbix-agent restart
