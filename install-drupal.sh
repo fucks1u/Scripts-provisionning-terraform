@@ -85,17 +85,13 @@ sudo cat <<"EOF" > /etc/apache2/sites-available/drupal.conf
     Options All
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
-    <Directory /var/www/html>
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-    </Directory>
 </VirtualHost>
 EOF
 
     echo -e "${bleu}********************************** 15 activer le site drupal **************************************************"
 #sudo a2ensite /etc/apache2/sites-available/drupal.conf
-
+sudo a2enmod rewrite
+sudo service apache2 restart
 
     echo -e "${bleu}********************************** 16 modifier le site  par defaut ********************************************"
 sudo cat <<"EOF" > /etc/apache2/sites-available/000-default.conf
@@ -105,6 +101,13 @@ sudo cat <<"EOF" > /etc/apache2/sites-available/000-default.conf
         DirectoryIndex index.php
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
+      
+      <Directory /var/www/html/drupal>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
 </VirtualHost>
 EOF
 
