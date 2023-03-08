@@ -94,7 +94,7 @@ sudo cat <<"EOF" > /etc/apache2/sites-available/drupal.conf
 EOF
 
     echo -e "${bleu}********************************** 15 activer le site drupal **************************************************"
-sudo a2ensite /etc/apache2/sites-available/drupal.conf
+#sudo a2ensite /etc/apache2/sites-available/drupal.conf
 
 
     echo -e "${bleu}********************************** 16 modifier le site  par defaut ********************************************"
