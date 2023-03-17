@@ -72,8 +72,8 @@ y
 n
 #Change the root password
 y
-$passmdb
-$passmdb
+${passmdb}
+${passmdb}
 #Remove anonymous users?
 y
 #Disallow root login remotely?
