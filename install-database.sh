@@ -19,7 +19,7 @@ abort()
 trap 'abort' 0
 
 #Mot de passe :
-passwp="passwp"
+passwp=$1
 passdl="passdl"
 passmdb="passmdb"
 passzabbix="passzabbix"
