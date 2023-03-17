@@ -62,7 +62,7 @@ sudo mysql -uroot -e "SET GLOBAL log_bin_trust_function_creators = 1;"
 
     echo "${bleu}***** Modification de l'accès à distance du serveur MariaDB *****"
 
-sed -i 's/^bind-address.*/bind-address = */' /etc/mysql/mariadb.conf.d/50-server.cnf
+sudo sed -i 's/^bind-address.*/bind-address = */' /etc/mysql/mariadb.conf.d/50-server.cnf
 
     echo "${bleu}******************** 3. Sécurisation de la base de données MariaDB  ********************"
 
