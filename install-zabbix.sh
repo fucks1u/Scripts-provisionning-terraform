@@ -9,6 +9,9 @@ pass=$1
 bdd=$2
 zab=$3
 
+id_admin_zab=$4
+pass_admin_zab=$5
+
         echo -e "${bleu}************************************** \\ Installation des paquets Zabbix // ********************************************************"
 sudo apt-get update
 sudo apt-get -y install apache2 php php-mysql php-mysqlnd php-ldap php-bcmath php-mbstring php-gd php-pdo php-xml libapache2-mod-php wget
@@ -72,13 +75,15 @@ $PHP_TZ = 'Europe/Paris';
 // nom de la base Zabbix hostname/IP
 $ZBX_SERVER_NAME                = 'supervision_zabbix';
 // Identifiant par defaut de Zabbix
-$ZBX_USER = 'Admin';
-$ZBX_PASSWORD = 'zabbix';
+$ZBX_USER = 'id_to_change';
+$ZBX_PASSWORD = 'pass_to_change';
 $IMAGE_FORMAT_DEFAULT   = IMAGE_FORMAT_PNG;
 EOF
 
 sudo sed -i "s/ip_database/$bdd/" /etc/zabbix/web/zabbix.conf.php
 sudo sed -i "s/pass_database/$pass/" /etc/zabbix/web/zabbix.conf.php
+sudo sed -i "s/id_to_change/$id_admin_zab/" /etc/zabbix/web/zabbix.conf.php
+sudo sed -i "s/pass_to_change/$pass_admin_zab/" /etc/zabbix/web/zabbix.conf.php
 
     echo -e "${bleu}*************************************** \\ Suppression de la page par defaut index.html // ******************"
 sudo rm -rf /var/www/html/index.html
