@@ -26,10 +26,10 @@ passmdb=$4
 
 
 #Ip
-ipdb="34.107.111.77"
-ipzab="35.246.188.16"
-ipwp="34.159.176.29"
-ipdl="34.159.76.155"
+ipdb=$5
+ipzab=$6
+ipwp=$7
+ipdl=$8
 
 set -ex
 sudo apt-get update
