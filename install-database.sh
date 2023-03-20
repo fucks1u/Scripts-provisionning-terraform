@@ -19,7 +19,7 @@ abort()
 trap 'abort' 0
 
 #Mot de passe :
-passwp=$1
+passwp="passwp"
 passdl="passdl"
 passmdb="passmdb"
 passzabbix="passzabbix"
@@ -67,14 +67,13 @@ sudo sed -i 's/^bind-address.*/bind-address = */' /etc/mysql/mariadb.conf.d/50-s
     echo "${bleu}******************** 3. Sécurisation de la base de données MariaDB  ********************"
 
 mysql_secure_installation <<EOF
-&
 y
 #Switch to unix_socket authentication
 n
 #Change the root password
 y
-passmdb
-passmdb
+${passmdb}
+${passmdb}
 #Remove anonymous users?
 y
 #Disallow root login remotely?
