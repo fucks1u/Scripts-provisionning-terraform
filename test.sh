@@ -31,8 +31,10 @@ ipwp="34.159.176.29"
 ipdl="34.159.76.155"
 
 if [ $# -ne 1 ]; then 
-    abort()
+    abort();
+    
 else 
+
 set -ex
 sudo apt-get update
 
