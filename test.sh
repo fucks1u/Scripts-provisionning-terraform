@@ -20,9 +20,9 @@ trap 'abort' 0
 
 #Mot de passe :
 passwp=$1
-passdl="passdl"
-passmdb="passmdb"
-passzabbix="passzabbix"
+passdl=$2
+passmdb=$3
+passzabbix=$4
 
 #Ip
 ipdb="34.107.111.77"
