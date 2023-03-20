@@ -31,11 +31,6 @@ ipzab="35.246.188.16"
 ipwp="34.159.176.29"
 ipdl="34.159.76.155"
 
-if [ $# -ne 1 ]; then 
-    abort();
-    
-else 
-
 set -ex
 sudo apt-get update
 
@@ -103,7 +98,7 @@ sudo sed -i "s/Server=127.0.0.1/Server=35.246.188.16/" /etc/zabbix/zabbix_agentd
 
 sudo service mariadb restart
 sudo service zabbix-agent restart
-fi
+
 trap : 0
 
 echo -e >&2 "${green}
