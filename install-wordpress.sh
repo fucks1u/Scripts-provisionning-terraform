@@ -18,11 +18,11 @@ abort()
 trap 'abort' 0
 
 #Identifiant
-user="wpuser"
-pass="passwp"
+user=$1
+pass=$2
 
 #Ip
-ip_bdd="34.107.111.77"
+ip_bdd=$3
 
 set -ex
 
