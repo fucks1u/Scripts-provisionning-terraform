@@ -14,7 +14,7 @@ pass_admin_zab=$5
 
         echo -e "${bleu}************************************** \\ Installation des paquets Zabbix // ********************************************************"
 sudo apt-get update
-sudo apt-get -y install apache2 php php-mysql php-mysqlnd php-ldap php-bcmath php-mbstring php-gd php-pdo php-xml libapache2-mod-php wget
+sudo apt-get -y install apache2 php php-mysql php-mysqlnd php-ldap php-bcmath php-mbstring php-gd php-pdo php-xml libapache2-mod-php wget git
 
         echo -e "${bleu}************************************** \\ Installation et configuration de Zabbix // *************************************************"
 wget https://repo.zabbix.com/zabbix/6.2/debian/pool/main/z/zabbix-release/zabbix-release_6.2-4%2Bdebian11_all.deb -O zabbix-release6-2.deb
