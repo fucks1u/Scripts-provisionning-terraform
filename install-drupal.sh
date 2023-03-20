@@ -17,9 +17,9 @@ abort()
 
 trap 'abort' 0
 
-set -e
+set -ex
 
-ip_bdd="34.107.111.77"
+ip_bdd=$1
 
     echo -e "${bleu}******************************* 1. Installation du service Apache2 ********************************************"
    
