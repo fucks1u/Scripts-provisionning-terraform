@@ -3,11 +3,11 @@
 bleu="\e[1;34m"
 
 #Identifiant
-pass="passzabbix"
+pass=$1
 
 #Ip
-bdd="34.107.111.77"
-zab="35.246.188.16"
+bdd=$2
+zab=$3
 
         echo -e "${bleu}************************************** \\ Installation des paquets Zabbix // ********************************************************"
 sudo apt-get update
