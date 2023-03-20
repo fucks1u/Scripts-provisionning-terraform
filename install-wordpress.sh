@@ -23,6 +23,7 @@ pass=$2
 
 #Ip
 ip_bdd=$3
+ip_zabbix=$4
 
 set -ex
 
@@ -69,7 +70,7 @@ sudo apt-get -y install zabbix-agent
 
     echo -e "${bleu}******************************* 10. Configuration de Zabbix Agent *******************************"
 sudo sed -i "s/# DBHost=localhost/DBHost=$ip_bdd/" /etc/zabbix/zabbix_agentd.conf 
-sudo sed -i "s/Server=127.0.0.1/Server=35.246.188.16/" /etc/zabbix/zabbix_agentd.conf
+sudo sed -i "s/Server=127.0.0.1/Server=$ip_zabbix/" /etc/zabbix/zabbix_agentd.conf
 
     echo -e "${bleu}********************* 11. Installation de PHP et des modules nécessaires  *******************************"
 sudo apt-get -y install php libapache2-mod-php php-fpm php-curl php-cli php-zip php-mysql php-xml php-mbstring php-gd php-xmlrpc php-imagick php-intl php-soap 
