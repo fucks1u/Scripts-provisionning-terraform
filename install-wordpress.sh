@@ -18,12 +18,11 @@ abort()
 trap 'abort' 0
 
 #Identifiant
-user=$1
-pass=$2
+pass=$1
 
 #Ip
-ip_bdd=$3
-ip_zabbix=$4
+ip_bdd=$2
+ip_zabbix=$3
 
 set -ex
 
@@ -96,7 +95,7 @@ sudo cat <<"EOF" > /var/www/html/wp-config.php
 <?php
 # Created by setup-mysql
 define('DB_NAME', 'wpdata');
-define('DB_USER', 'user_to_replace');
+define('DB_USER', 'wpuser');
 define('DB_PASSWORD', 'password_to_replace');
 define('DB_HOST', 'host_to_replace');
 $table_prefix = 'wp_';
@@ -107,7 +106,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once ABSPATH . 'wp-settings.php';
 EOF
 
-sudo sed -i "s/user_to_replace/$user/" /var/www/html/wp-config.php
 sudo sed -i "s/password_to_replace/$pass/" /var/www/html/wp-config.php
 sudo sed -i "s/host_to_replace/$ip_bdd/" /var/www/html/wp-config.php
 
